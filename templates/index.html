@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Pulse</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>🚀 Page Pulse</h1>
+
+            <p class="subtitle">
+                Analyze any website and get its SEO & basic health report.
+            </p>
+
+            <div class="input-box">
+
+                <input
+                    type="text"
+                    id="urlInput"
+                    placeholder="Enter website URL (https://example.com)"
+                >
+
+                <button id="analyzeBtn">
+                    Analyze
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-card" id="resultSection">
+
+            <h2>Website Report</h2>
+
+            <div class="report-item">
+                <span>Status</span>
+                <span id="status">--</span>
+            </div>
+
+            <div class="report-item">
+                <span>Response Time</span>
+                <span id="responseTime">--</span>
+            </div>
+
+            <div class="report-item">
+                <span>Page Title</span>
+                <span id="title">--</span>
+            </div>
+
+            <div class="report-item">
+                <span>Meta Description</span>
+                <span id="meta">--</span>
+            </div>
+
+            <div class="report-item">
+                <span>H1 Count</span>
+                <span id="h1Count">--</span>
+            </div>
+
+            <div class="report-item">
+                <span>Images Missing ALT</span>
+                <span id="missingAlt">--</span>
+            </div>
+
+            <div class="report-item">
+                <span>Approx. Word Count</span>
+                <span id="wordCount">--</span>
+            </div>
+
+        </div>
+
+    </div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
