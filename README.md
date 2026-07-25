@@ -7,6 +7,12 @@ This project was developed as part of a **Software Development Engineering Inter
 
 ---
 
+## 🌐 Live Project
+
+https://page-pulse-website-audit-tool-vkta.onrender.com/
+
+---
+
 ## 📌 Features
 
 ✅ Analyze any website by entering its URL
@@ -31,6 +37,7 @@ This project was developed as part of a **Software Development Engineering Inter
 
 ✅ BeautifulSoup HTML Parsing
 
+✅ Automated unit tests for analyzer functionality
 ---
 
 ## 📸 Preview
@@ -93,42 +100,130 @@ Page-Pulse-Website-Audit-Tool/
 │   └── script.js
 │
 └── tests/
+│   └── test_analyzer.py
+│
+├── screenshots/
+│   ├── homepage.png
+│   ├── invalid-url-error.png
+│   └── results.png
 ```
 
 ---
 
-# ⚙️ Installation
+## 📸 Screenshots
 
-Clone the repository
+### Home Page
+![Home Page](screenshots/homepage.png)
+
+### Audit Result
+![Audit Result](screenshots/results.png)
+
+### Invalid URL Error
+![Invalid URL Error](screenshots/invalid-url-error.png)
+
+---
+
+# 🏗️ Design Decisions
+
+The project follows a simple modular architecture to keep the code easy to understand, maintain, and extend.
+
+## Backend
+
+- Flask is used to expose a lightweight REST API.
+- Business logic is separated into `analyzer.py`.
+- `app.py` is responsible only for routing and request handling.
+
+## Frontend
+
+- HTML provides the page structure.
+- CSS is used for styling and responsive layout.
+- JavaScript communicates with the backend using the Fetch API and updates the UI dynamically.
+
+## Website Analysis
+
+The analyzer extracts the following information:
+
+- HTTP Status Code
+- Response Time
+- Page Title
+- Meta Description
+- Number of H1 Tags
+- Images Missing ALT Attributes
+- Approximate Word Count
+
+## Error Handling
+
+The application handles common scenarios such as:
+
+- Invalid URLs
+- Network connection failures
+- Request timeouts
+- Websites that restrict automated requests
+
+Instead of crashing, the backend returns a structured JSON response so the frontend can display meaningful information to the user.
+
+## Why This Architecture?
+
+Separating the analysis logic (`analyzer.py`) from the Flask routes (`app.py`) keeps the project modular and makes it easier to test, debug, and extend with additional SEO checks in the future.
+
+---
+
+# ⚙️ Setup
+
+## Prerequisites
+
+- Python 3.10 or higher
+- pip
+
+---
+
+## Installation
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/Page-Pulse-Website-Audit-Tool.git
 ```
 
-Move into the project folder
+### 2. Navigate to the project
 
 ```bash
 cd Page-Pulse-Website-Audit-Tool
 ```
 
-Install dependencies
+### 3. (Optional) Create a virtual environment
+
+Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+macOS/Linux
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application
+### 5. Run the application
 
 ```bash
 python app.py
 ```
 
-Open your browser
+### 6. Open in your browser
 
 ```
 http://127.0.0.1:5000
 ```
-
 ---
 
 # 📖 How It Works
@@ -143,6 +238,74 @@ http://127.0.0.1:5000
 8. JavaScript updates the UI with the website report.
 
 ---
+# 🔌 API Contract
+
+The application exposes a single REST API endpoint for website analysis.
+
+## Endpoint
+
+POST /analyze
+
+---
+
+## Request Headers
+
+Content-Type: application/json
+
+---
+
+## Request Body
+
+```json
+{
+  "url": "https://example.com"
+}
+```
+
+The application also accepts URLs without a protocol (e.g., `example.com`) and automatically prefixes them with `https://`.
+
+---
+
+## Success Response (HTTP 200)
+
+```json
+{
+  "status": 200,
+  "response_time": "235 ms",
+  "title": "Example Domain",
+  "meta": "Not Found",
+  "h1_count": 1,
+  "missing_alt": 0,
+  "word_count": 21
+}
+```
+
+---
+
+## Error Response
+
+```json
+{
+  "status": "Error",
+  "response_time": "--",
+  "title": "Unable to Analyze",
+  "meta": "--",
+  "h1_count": 0,
+  "missing_alt": 0,
+  "word_count": 0,
+  "error": "Description of the error"
+}
+```
+
+---
+
+## Supported Input
+
+- https://example.com
+- http://example.com
+- example.com
+
+---
 
 # 📊 Example Output
 
@@ -155,6 +318,31 @@ http://127.0.0.1:5000
 | H1 Count | 1 |
 | Missing ALT Images | 0 |
 | Word Count | 21 |
+
+---
+
+## Automated Tests
+
+This project includes automated tests to verify the core functionality of the website analyzer.
+
+### Test Cases
+
+- ✅ Happy Path – Verifies that a valid website (e.g., https://example.com) returns a successful response and expected analysis data.
+- ✅ URL Without Protocol – Ensures URLs entered without `http://` or `https://` are automatically handled.
+- ✅ Invalid URL – Checks that invalid or unreachable URLs are handled gracefully without crashing the application.
+- ✅ Request Timeout – Simulates a network timeout and verifies that the application returns an appropriate timeout response.
+
+### Run Tests
+
+```bash
+python -m unittest tests/test_analyzer.py
+```
+
+Or, to run all tests:
+
+```bash
+python -m unittest discover tests
+```
 
 ---
 
@@ -222,3 +410,9 @@ Developed as part of a **Software Development Engineering Internship Assignment*
 # 📄 License
 
 This project is developed for educational and internship assessment purposes.
+
+---
+
+# 🤖 AI Usage
+
+AI tools were used to assist with brainstorming, debugging, improving code structure, and refining documentation. All implementation, testing, customization, and final technical decisions were reviewed, verified, and completed by the project author.
