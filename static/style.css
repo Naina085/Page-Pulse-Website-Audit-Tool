@@ -7,18 +7,14 @@
 
 body{
     background:#f4f7fb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     min-height:100vh;
     padding:40px 20px;
 }
-
 .container{
     width:100%;
     max-width:850px;
+    margin:0 auto;
 }
-
 .card,
 .result-card{
     background:white;
@@ -91,10 +87,10 @@ button:hover{
     border:none;
 }
 
-.report-item span:first-child{
+/* .report-item span:first-child{
     font-weight:600;
-    color:#333;
-}
+    color:#555;
+} */
 
 .report-item span:last-child{
     color:#555;
@@ -126,4 +122,80 @@ button{
     max-width:100%;
 }
 
+}
+/* Status Dot */
+
+.status-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.status-wrapper{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.status-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    display:none;   /* Hidden by default */
+}
+
+/* Footer */
+
+.footer{
+    width:100%;
+    margin-top:50px;
+    padding:25px 0;
+    text-align:center;
+    border-top:1px solid #e5e7eb;
+    color:#6b7280;
+    font-size:14px;
+}
+
+.footer a{
+    color:#2563eb;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.footer a:hover{
+    text-decoration:underline;
+}
+
+/* SEO Score Card */
+
+.score-card{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    text-align:center;
+}
+.score-card h2{
+    color:#2563eb;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+#seoScore{
+    font-size:40px;
+    font-weight:700;
+    color:#16a34a;
+    margin-top:15px;
+}
+
+.error-message{
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    border-radius:8px;
+    background:#fee2e2;
+    color:#b91c1c;
+    border:1px solid #fecaca;
+    font-size:15px;
 }
